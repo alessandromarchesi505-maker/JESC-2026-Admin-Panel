@@ -1,0 +1,12 @@
+# This is a SECOND Cloudflare Worker with a separate public URL.
+# Important: the main voting Worker must be deployed first.
+name = "jesc-2026-admin"
+main = "admin-worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# Cross-script binding: the EXISTING durable SQLite voting database is reused.
+[[durable_objects.bindings]]
+name = "VOTING"
+class_name = "VotingRoom"
+script_name = "jesc-2026-televote"
